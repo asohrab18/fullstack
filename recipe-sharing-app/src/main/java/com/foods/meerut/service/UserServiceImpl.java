@@ -16,15 +16,6 @@ public class UserServiceImpl implements UserService {
 	private UserRepo userRepo;
 
 	@Override
-	public List<User> findAllUsers() {
-		List<User> users = userRepo.findAll();
-		if (users == null || users.isEmpty()) {
-			throw new RecipeException("Users do not exist.");
-		}
-		return userRepo.findAll();
-	}
-
-	@Override
 	public User createUser(User user) {
 		if (user.getEmail() == null || user.getEmail().isBlank()) {
 			throw new RecipeException("Email is required");
@@ -37,17 +28,36 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public List<User> findAllUsers() {
+		List<User> users = userRepo.findAll();
+		if (users == null || users.isEmpty()) {
+			throw new RecipeException("Users do not exist.");
+		}
+		return userRepo.findAll();
+	}
+
+	@Override
 	public User findByEmail(String email) {
-		return userRepo.findByEmail(email.trim());
+		if (email == null || email.isBlank()) {
+			throw new RecipeException("Email is required");
+		}
+		User existingUser = userRepo.findByEmail(email.trim());
+		if (existingUser == null) {
+			throw new RecipeException("User does not exist with email: '" + email + "'");
+		}
+		return existingUser;
 	}
 
 	@Override
 	public String deleteUser(Long id) {
+		if (id == null || id <= 0) {
+			throw new RecipeException("Valid id is required.");
+		}
 		boolean userExists = userRepo.existsById(id);
 		if (!userExists) {
-			return "user with id = " + id + " does not exist.";
+			return "user does not exist with id = " + id;
 		}
 		userRepo.deleteById(id);
-		return "user with id = " + id + " deleted successfully.";
+		return "user deleted successfully with id = " + id;
 	}
 }

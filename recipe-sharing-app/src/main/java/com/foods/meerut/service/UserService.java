@@ -8,9 +8,9 @@ public interface UserService {
 
 	User createUser(User user);
 
-	User findByEmail(String email);
-
 	List<User> findAllUsers();
+
+	User findByEmail(String email);
 
 	String deleteUser(Long id);
 }
