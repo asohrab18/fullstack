@@ -26,6 +26,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User createUser(User user) {
+		if (user.getEmail() == null || user.getEmail().isBlank()) {
+			throw new RecipeException("Email is required");
+		}
+		User existingUser = userRepo.findByEmail(user.getEmail().trim());
+		if (existingUser != null) {
+			throw new RecipeException("'" + user.getEmail() + "' already exists. Use another email or sign in.");
+		}
 		return userRepo.save(user);
 	}
 

@@ -28,13 +28,6 @@ public class UserController {
 
 	@PostMapping("users")
 	public User createUser(@RequestBody User user) throws Exception {
-		if (user.getEmail() == null || user.getEmail().isBlank()) {
-			throw new RecipeException("Email is required");
-		}
-		User existingUser = userService.findByEmail(user.getEmail().trim());
-		if (existingUser != null) {
-			throw new RecipeException("Cannot register bcoz '" + user.getEmail() + "' already exists.");
-		}
 		return userService.createUser(user);
 	}
 
