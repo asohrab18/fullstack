@@ -20,6 +20,11 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@GetMapping("users")
+	public List<User> findAllUsers() {
+		return userService.findAllUsers();
+	}
 
 	@PostMapping("users")
 	public User createUser(@RequestBody User user) throws Exception {
@@ -33,14 +38,6 @@ public class UserController {
 		return userService.createUser(user);
 	}
 
-	@GetMapping("users")
-	public List<User> findAllUsers() throws Exception {
-		List<User> existingUsers = userService.findAllUsers();
-		if (existingUsers == null || existingUsers.isEmpty()) {
-			throw new RecipeException("Users do not exist.");
-		}
-		return existingUsers;
-	}
 
 	@GetMapping("users-by-email")
 	public User findUserByEmail(@RequestParam(required = true) String email) throws Exception {
