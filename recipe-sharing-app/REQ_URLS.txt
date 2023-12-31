@@ -1,2 +1,18 @@
-http://localhost:8000/
+POST: CREATE USER
+http://localhost:8000/users
+Body(Raw/JSON):
+{
+    "fullName": "John Smith",
+    "email": "test1@gmail.com",
+    "password": "passwprd1"
+}
 
+
+GET ALL USERS
+http://localhost:8000/users
+
+GET USER BY EMAIL
+http://localhost:8000/users-by-email?email=test1@gmail.com
+
+DELETE USER BY ID:
+http://localhost:8000/users/1

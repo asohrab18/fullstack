@@ -1,8 +1,8 @@
-package com.foods.meerut.repositories;
+package com.foods.meerut.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.foods.meerut.model.User;
+import com.foods.meerut.entity.User;
 
 public interface UserRepo extends JpaRepository<User, Long> {
 

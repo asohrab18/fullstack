@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.foods.meerut.entity.User;
 import com.foods.meerut.exception.RecipeException;
-import com.foods.meerut.model.User;
-import com.foods.meerut.repositories.UserRepo;
+import com.foods.meerut.repository.UserRepo;
 
 @Service
 public class UserServiceImpl implements UserService {

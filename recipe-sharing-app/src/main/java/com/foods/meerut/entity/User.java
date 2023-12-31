@@ -1,4 +1,4 @@
-package com.foods.meerut.model;
+package com.foods.meerut.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

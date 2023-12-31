@@ -2,7 +2,7 @@ package com.foods.meerut.service;
 
 import java.util.List;
 
-import com.foods.meerut.model.User;
+import com.foods.meerut.entity.User;
 
 public interface UserService {
 
